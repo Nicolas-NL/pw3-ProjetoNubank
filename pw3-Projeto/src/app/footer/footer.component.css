@@ -1,0 +1,13 @@
+.footer{
+    background-color: black;
+    position:static;
+    bottom:0;
+    width:100%;
+    color: white;
+    border: 1px solid #000;
+}
+
+.nufooter{
+
+    fill: rgb(255, 255, 255);
+}
