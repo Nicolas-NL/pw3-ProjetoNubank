@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { EmailValidator, FormBuilder, FormControlName, FormGroup, MinLengthValidator, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cadastro',
@@ -12,18 +12,18 @@ export class CadastroComponent {
 
   constructor(private builder : FormBuilder){
     this.cadastroform = builder.group({
-      nome: [""],
-      usuario:[""],
-      email:[""],
-      senha:[""],
-      confirmaSenha:[""],
-      aceite:[false]
-    });
+      nome: ["", Validators.required,],
+      usuario:["", Validators.required],
+      email:["", Validators.required],
+      senha:["" , Validators.required],
+      confirmaSenha:["" , Validators.required],
+      aceite:[false , Validators.requiredTrue]
 
+    });
 
   }
   cadastrar(){
     console.log(this.cadastroform.value)
+    
    }
-
 }

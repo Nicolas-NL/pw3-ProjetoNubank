@@ -1,31 +1,43 @@
 <div class="container">
-<div class="register-form">
+<div class="register-form ">
 
   <form [formGroup]="cadastroform" (ngSubmit) = "cadastrar()">
 
     <div class="form-group">
       <label>Nome</label>
       <input type="text" class="form-control"formControlName="nome" />
+      <div *ngIf="cadastroform.get('nome')?.errors?.['required'] && cadastroform.get('nome')?.touched">  Nome obrigatório</div>
+
     </div>
 
     <div class="form-group">
       <label>Usuário</label>
-      <input type="text" class="form-control" formControlName="usuario"/>
+      <input type="text" minlength="3" maxlength="15" class="form-control" formControlName="usuario"/>
+      <div *ngIf="cadastroform.get('usuario')?.errors?.['required'] && cadastroform.get('usuario')?.touched">  Nome de Usuário obrigatório</div>
+
     </div>
 
     <div class="form-group">
       <label>E-mail</label>
-      <input type="email" class="form-control" formControlName="email"/>
+      <input type="email"  class="form-control" formControlName="email" ngModel email="true"/>
+      <div *ngIf="cadastroform.get('email')?.errors?.['required'] && cadastroform.get('email')?.touched">  Email obrigatório</div>
+
     </div>
 
     <div class="form-group">
       <label>Senha</label>
-      <input class="form-control" formControlName="senha" />
+      <input type = "password" minlength="8" maxlength="12" class="form-control" formControlName="senha"/>
+      <div *ngIf="cadastroform.get('senha')?.errors?.['required'] && cadastroform.get('senha')?.touched">  Senha obrigatória</div>
+
     </div>
 
     <div class="form-group">
       <label>Confirmar senha</label>
-      <input type="password" class="form-control" formControlName="confirmaSenha" />
+      <input type="password" minlength="8" maxlength="12" class="form-control" formControlName="confirmaSenha" />
+      <div *ngIf="cadastroform.get('confirmaSenha')?.errors?.['required'] && cadastroform.get('confirmaSenha')?.touched"> Confirma Senha Obrigatoria</div>
+      <div *ngIf="cadastroform.get('confirmaSenha')?.touched != cadastroform.get('senha')?.touched"> Senha Repetida Incorretamente</div>
+
+
     </div>
 
     <div class="form-group form-check">
@@ -34,8 +46,8 @@
     </div>
 
     <div class="form-group">
-      <button type="submit" class="btn btn-primary">Registrar</button>
-      <button type="button" class="btn btn-warning float-right">Limpar</button>
+      <button type="submit" class="btn btn-primary" [disabled]="cadastroform.invalid">Registrar</button>
+      <button type="reset" class="btn btn-warning float-right">Limpar</button>
     </div>
 
   </form>
